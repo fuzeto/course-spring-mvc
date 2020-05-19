@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,17 +31,29 @@
 					Casa do Código
 				</a>
 			</div>
-			<div class="collapse navbar-collapse"
-				 id="bs-example-navbar-collapse-1">
+			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li>
+					<li class="nav-item">
 						<a href="${s:mvcUrl('PC#listar').build()}">
 							Lista de Produtos
 						</a>
 					</li>
-					<li>
+					<li class="nav-item">
 						<a href="${s:mvcUrl('PC#form').build()}">
 							Cadastro de Produtos
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<c:url value="/logout" />">Sair</a></span>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="nav-item">
+						<a href="#">
+							<security:authentication
+									property="principal"
+									var="usuario" />
+							Usuário: ${usuario.username }
 						</a>
 					</li>
 				</ul>
