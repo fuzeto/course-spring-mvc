@@ -33,6 +33,8 @@ public class PagamentoController {
 				String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
 				model.addFlashAttribute("sucesso", response);
 				System.out.println(response);
+				//método para tirar todos os livros do carrinho
+				this.carrinho.limpa();
 				return new ModelAndView("redirect:/produtos");
 			} catch (HttpClientErrorException e) {
 				e.printStackTrace();

@@ -25,7 +25,7 @@ public class JPAConfiguration {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigo");
+		dataSource.setUrl("jdbc:mysql://localhost/casadocodigo");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		factoryBean.setDataSource(dataSource);
 		
@@ -44,4 +44,6 @@ public class JPAConfiguration {
 	public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
 		return new JpaTransactionManager(emf);
 	}
+	
+	
 }
