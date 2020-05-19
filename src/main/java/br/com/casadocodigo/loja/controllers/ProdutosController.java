@@ -60,9 +60,9 @@ public class ProdutosController {
 		
 		dao.gravar(produto);
 		
-		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
+		redirectAttributes.addFlashAttribute("message", "Produto cadastrado com sucesso!");
 		
-		return new ModelAndView("redirect:produtos");
+		return new ModelAndView("redirect:/produtos");
 	}
 	
 	@RequestMapping( method=RequestMethod.GET)
