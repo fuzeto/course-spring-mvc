@@ -91,13 +91,13 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 		manager.setCacheBuilder(builder);
 		return  manager; //new ConcurrentMapCacheManager();
 	}
-	
+
 	@Bean
 	public ViewResolver contentNegotiationViewResolver(ContentNegotiationManager manager) {
 		List<ViewResolver> viewResolvers = new ArrayList<>();
 		viewResolvers.add(internalResourceViewResolver());
 		viewResolvers.add(new JsonViewResolver());
-		
+
 		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
 		resolver.setViewResolvers(viewResolvers);
 		resolver.setContentNegotiationManager(manager);
@@ -108,14 +108,14 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new LocaleChangeInterceptor());
 	}
-	
+
 	@Bean
 	public LocaleResolver localeResolver(){
-	    return new CookieLocaleResolver();
+		return new CookieLocaleResolver();
 	}
 }
