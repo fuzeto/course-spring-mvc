@@ -22,22 +22,22 @@ import br.com.casadocodigo.loja.models.TipoPreco;
 @ContextConfiguration(classes= {JPAConfiguration.class, ProdutoDAO.class, DataSourceConfigurationTest.class})
 @ActiveProfiles("test")
 public class ProdutoDAOTest {
-
-
-    @Autowired
+	
+	
+	@Autowired
     private ProdutoDAO produtoDao;
 
-    @Test
-    @Transactional
-    public void deveSomarTodosOsPrecosPorTipoLivro() {
+	@Test
+	@Transactional
+	public void deveSomarTodosOsPrecosPorTipoLivro() {
 
-        List<Produto> livrosImpressos = ProdutoBuilder.newProduto(TipoPreco.IMPRESSO, BigDecimal.TEN).mais(3).buildAll();
-        List<Produto> livrosEbook = ProdutoBuilder.newProduto(TipoPreco.EBOOK, BigDecimal.TEN).mais(3).buildAll();
+	    List<Produto> livrosImpressos = ProdutoBuilder.newProduto(TipoPreco.IMPRESSO, BigDecimal.TEN).more(3).buildAll();
+	    List<Produto> livrosEbook = ProdutoBuilder.newProduto(TipoPreco.EBOOK, BigDecimal.TEN).more(3).buildAll();
 
-        livrosImpressos.stream().forEach(produtoDao::gravar);
-        livrosEbook.stream().forEach(produtoDao::gravar);
-
-        BigDecimal valor = produtoDao.somaPrecosPorTipo(TipoPreco.EBOOK);
-        Assert.assertEquals(new BigDecimal(40).setScale(2), valor);
-    }
+	    livrosImpressos.stream().forEach(produtoDao::gravar);
+	    livrosEbook.stream().forEach(produtoDao::gravar);
+	    
+	    BigDecimal valor = produtoDao.somaPrecosPorTipo(TipoPreco.EBOOK);
+	    Assert.assertEquals(new BigDecimal(40).setScale(2), valor);
+	}
 }

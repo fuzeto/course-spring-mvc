@@ -28,33 +28,33 @@ import br.com.casadocodigo.loja.conf.SecurityConfiguration;
 @ActiveProfiles("test")
 public class ProdutosControllerTest {
 
-    @Autowired
-    private WebApplicationContext wac;
+	@Autowired
+	private WebApplicationContext wac;
+	
+	@Autowired
+	private Filter springSecurityFilterChain;
 
-    @Autowired
-    private Filter springSecurityFilterChain;
-
-    private MockMvc mockMvc;
-
-    @Before
-    public void setup(){
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(springSecurityFilterChain).build();
-    }
-
-    @Test
-    public void deveRetornarParaHomeComOsLivros() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/"))
-                .andExpect(MockMvcResultMatchers.model().attributeExists("produtos"))
-                .andExpect(MockMvcResultMatchers.forwardedUrl("/WEB-INF/views/home.jsp"));
-    }
-
-    @Test
-    public void somenteAdminDeveAcessarProdutosForm() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/produtos/form")
-                .with(SecurityMockMvcRequestPostProcessors
-                        .user("user@casadocodigo.com.br").password("123456")
-                        .roles("USUARIO")))
-                .andExpect(MockMvcResultMatchers.status().is(403));
-    }
-
+	private MockMvc mockMvc;
+	
+	@Before
+	public void setup(){
+	    mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilter(springSecurityFilterChain).build();
+	}	
+	
+	@Test
+	public void deveRetornarParaHomeComOsLivros() throws Exception{
+	    mockMvc.perform(MockMvcRequestBuilders.get("/"))
+	            .andExpect(MockMvcResultMatchers.model().attributeExists("produtos"))
+	            .andExpect(MockMvcResultMatchers.forwardedUrl("/WEB-INF/views/home.jsp"));
+	}
+	
+	@Test
+	public void somenteAdminDeveAcessarProdutosForm() throws Exception{
+	    mockMvc.perform(MockMvcRequestBuilders.get("/produtos/form")
+	            .with(SecurityMockMvcRequestPostProcessors
+	                .user("user@casadocodigo.com.br").password("123456")
+	                .roles("USUARIO")))
+	            .andExpect(MockMvcResultMatchers.status().is(403));
+	}
+	
 }

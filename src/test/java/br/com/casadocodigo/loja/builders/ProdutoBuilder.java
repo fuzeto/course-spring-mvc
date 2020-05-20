@@ -1,13 +1,13 @@
 package br.com.casadocodigo.loja.builders;
 
-import br.com.casadocodigo.loja.models.Preco;
-import br.com.casadocodigo.loja.models.Produto;
-import br.com.casadocodigo.loja.models.TipoPreco;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import br.com.casadocodigo.loja.models.Preco;
+import br.com.casadocodigo.loja.models.Produto;
+import br.com.casadocodigo.loja.models.TipoPreco;
 
 public class ProdutoBuilder {
 
@@ -18,40 +18,34 @@ public class ProdutoBuilder {
     }
 
     public static ProdutoBuilder newProduto(TipoPreco tipoPreco, BigDecimal valor) {
-        Produto livro = create("Livro 1", tipoPreco, valor);
+        Produto livro = create("livro 1", tipoPreco, valor);
         return new ProdutoBuilder(livro);
     }
 
     public static ProdutoBuilder newProduto() {
-        Produto livro = create("Livro 1", TipoPreco.COMBO, BigDecimal.TEN);
+        Produto livro = create("livro 1", TipoPreco.COMBO, BigDecimal.TEN);
         return new ProdutoBuilder(livro);
     }
 
-    private static Produto create(String titulo, TipoPreco tipoPreco, BigDecimal valor) {
-
+    private static Produto create(String nomeLivro, TipoPreco tipoPreco, BigDecimal valor) {
         Produto livro = new Produto();
-        livro.setTitulo(titulo);
+        livro.setTitulo(nomeLivro);
         livro.setDataLancamento(Calendar.getInstance());
         livro.setPaginas(150);
-        livro.setDescricao("Ótimo livro sobre testes");
-
+        livro.setDescricao("Livro top sobre testes");
         Preco preco = new Preco();
         preco.setTipo(tipoPreco);
         preco.setValor(valor);
-
         livro.getPrecos().add(preco);
-
         return livro;
     }
 
-    public ProdutoBuilder mais(int quantidade) {
+    public ProdutoBuilder more(int number) {
         Produto base = produtos.get(0);
         Preco preco = base.getPrecos().get(0);
-
-        for (int i=0; i<quantidade; i++) {
-            produtos.add(create("Livro " + i, preco.getTipo(), preco.getValor()));
+        for (int i = 0; i < number; i++) {
+            produtos.add(create("Book " + i, preco.getTipo(), preco.getValor()));
         }
-
         return this;
     }
 

@@ -14,7 +14,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {SecurityConfiguration.class,
+		return new Class[] {SecurityConfiguration.class, 
 				AppWebConfiguration.class, JPAConfiguration.class};
 	}
 
@@ -29,22 +29,23 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	}
 
 	@Override
-	protected Filter[] getServletFilters() {
-		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-		encodingFilter.setEncoding("UTF-8");
-		return new Filter[] {encodingFilter};
-	}
-
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding("UTF-8");
+        return new Filter[] {encodingFilter};
+    }
+	
+	//veja tbm https://cursos.alura.com.br/forum/topico-atualizacao-resources-nao-sao-carregados-na-aula-10-58813
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
-		registration.setMultipartConfig(new MultipartConfigElement(""));
+			registration.setMultipartConfig(new MultipartConfigElement(""));
 	}
-
+	
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		super.onStartup(servletContext);
 		servletContext.addListener(RequestContextListener.class);
 		servletContext.setInitParameter("spring.profiles.active", "dev");
 	}
-
+	
 }
