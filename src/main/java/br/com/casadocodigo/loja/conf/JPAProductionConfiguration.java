@@ -34,10 +34,13 @@ public class JPAProductionConfiguration {
 
         URI dbUrl = new URI(environment.getProperty("DATABASE_URL"));
 
-        dataSource.setUrl("jdbc:postgresql://ec2-52-86-73-86.compute-1.amazonaws.com:5432/d7479h91f73nnl");
-//        dataSource.setUrl("jdbc:postgresql://"+dbUrl.getHost()+":"+dbUrl.getPort()+dbUrl.getPath());
-        dataSource.setUsername("rcfbhyjebbmffs");
-        dataSource.setPassword("79a7f67dbd30007092dde364d44c12706ffe828ab92f584d06fbe91add5c0d50");
+        dataSource.setUrl("jdbc:postgresql://"+dbUrl.getHost()+":"+dbUrl.getPort()+dbUrl.getPath());
+        dataSource.setUsername(dbUrl.getUserInfo().split(":")[0]);
+        dataSource.setPassword(dbUrl.getUserInfo().split(":")[1]);
+
+        System.out.println("jdbc:postgresql://"+dbUrl.getHost()+":"+dbUrl.getPort()+dbUrl.getPath());
+        System.out.println(dbUrl.getUserInfo().split(":")[0]);
+        System.out.println(dbUrl.getUserInfo().split(":")[1]);
 
         return dataSource;
     }
