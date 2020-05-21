@@ -2,7 +2,7 @@
   <div class="clearfix container">
 	<div id="collections-footer">
 		<!-- cdc-footer -->
-		<p class="footer-title">Coleções de Programação</p>
+		<p class="footer-title">Coleï¿½ï¿½es de Programaï¿½ï¿½o</p>
 		<ul class="footer-text-links">
 			<li><a href="/collections/livros-de-java">Java</a></li>
 			<li><a href="/collections/livros-desenvolvimento-web">Desenvolvimento Web</a></li>
@@ -18,14 +18,14 @@
 	</div>
 	<div id="social-footer">
 		<!-- books-footer -->
-		<p class="footer-title">Links da Casa do Código</p>
+		<p class="footer-title">Links da Casa do Cï¿½digo</p>
 		<ul class="footer-text-links">
 			<li><a href="http://livros.casadocodigo.com.br" rel="nofollow">Meus E-books</a></li>
-			<li><a href="/pages/sobre-a-casa-do-codigo">Sobre a Casa do Código</a></li>
+			<li><a href="/pages/sobre-a-casa-do-codigo">Sobre a Casa do Cï¿½digo</a></li>
 			<li><a href="/pages/perguntas-frequentes">Perguntas Frequentes</a></li>
-			<li><a href="https://www.caelum.com.br">Caelum - Ensino e Inovação</a></li>
+			<li><a href="https://www.caelum.com.br">Caelum - Ensino e Inovaï¿½ï¿½o</a></li>
 			<li><a href="http://www.codecrushing.com/" rel="nofollow">Code Crushing</a></li>
-			<li><a href="http://www.casadocodigo.com.br/pages/politica-de-privacidade" rel="nofollow">Política de Privacidade</a></li>
+			<li><a href="http://www.casadocodigo.com.br/pages/politica-de-privacidade" rel="nofollow">Polï¿½tica de Privacidade</a></li>
 		</ul>
 		<p class="footer-title">Redes Sociais</p>
 		<ul>
@@ -35,7 +35,7 @@
 	</div>
 	<div id="newsletter-footer">
 		<!-- social-footer -->
-		<p class="footer-title">Receba as Novidades e Lançamentos</p>
+		<p class="footer-title">Receba as Novidades e Lanï¿½amentos</p>
 		<div id="form-newsletter">
 			<form action="" method="POST" id="ss-form" class="form-newsletter">
 				<ul>
@@ -45,7 +45,7 @@
 				</ul>
 			</form>
 			<ul>
-				<li class="ie8"><a href="" rel="nofollow">Receba as Novidades e Lançamentos</a></li>
+				<li class="ie8"><a href="" rel="nofollow">Receba as Novidades e Lanï¿½amentos</a></li>
 			</ul>
 		</div>
 		<ul class="footer-payments">
