@@ -16,6 +16,8 @@ import br.com.casadocodigo.loja.models.CarrinhoCompras;
 import br.com.casadocodigo.loja.models.DadosPagamento;
 import br.com.casadocodigo.loja.models.Usuario;
 
+import java.util.concurrent.Callable;
+
 @Controller
 @RequestMapping("/pagamento")
 public class PagamentoController {
@@ -25,30 +27,30 @@ public class PagamentoController {
 	
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@Autowired
 	private MailSender sender;
 	
 	@RequestMapping(value="/finalizar", method=RequestMethod.POST)
-	public ModelAndView finalizar(@AuthenticationPrincipal Usuario usuario, RedirectAttributes model){
-		String uri = "http://book-payment.herokuapp.com/payment";
-		
-		try {
-			String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
-			model.addFlashAttribute("message", response);
-			System.out.println(response);
-			
-			//método para tirar todos os livros do carrinho
-			this.carrinho.limpa();
-			
-			enviaEmailCompraProduto(usuario);
-			
-			return new ModelAndView("redirect:/");
-		} catch (HttpClientErrorException e) {
-			e.printStackTrace();
-			model.addFlashAttribute("message", "Valor maior que o permitido! Compra negada!");
-			return new ModelAndView("redirect:/");
-		}
+	public Callable<ModelAndView> finalizar(@AuthenticationPrincipal Usuario usuario, RedirectAttributes model){
+		return () -> {
+			String uri = "http://book-payment.herokuapp.com/payment";
+
+			try {
+				String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
+				System.out.println(response);
+
+				enviaEmailCompraProduto(usuario);
+
+				model.addFlashAttribute("message", response);
+
+				return new ModelAndView("redirect:/produtos");
+			} catch (HttpClientErrorException e) {
+				e.printStackTrace();
+				model.addFlashAttribute("message", "Valor maior que o permitido! Compra negada!");
+				return new ModelAndView("redirect:/produtos");
+			}
+		};
 	}
 
 	private void enviaEmailCompraProduto(Usuario usuario) {
