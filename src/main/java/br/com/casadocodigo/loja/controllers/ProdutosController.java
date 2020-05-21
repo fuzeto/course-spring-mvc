@@ -2,6 +2,7 @@ package br.com.casadocodigo.loja.controllers;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,11 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -77,6 +78,9 @@ public class ProdutosController {
 	public ModelAndView detalhe(@PathVariable("id") Integer id){
 	    ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
 	    Produto produto = dao.find(id);
+	    
+//	    if(true) throw new RuntimeException("Excessão Genérica Acontecendo!!!!");
+	    
 	    modelAndView.addObject("produto", produto);
 	    return modelAndView;
 	}
@@ -86,5 +90,11 @@ public class ProdutosController {
 //	public Produto detalheJson(@PathVariable("id") Integer id){
 //	    Produto produto = dao.find(id);
 //	    return produto;
+//	}
+
+    //tratamente de exceção especifica nesse controlador 
+//	@ExceptionHandler(NoResultException.class)
+//	public String trataDetalheNaoEcontrado(){
+//	    return "error";
 //	}
 }

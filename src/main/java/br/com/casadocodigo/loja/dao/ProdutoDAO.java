@@ -24,9 +24,9 @@ public class ProdutoDAO {
 		manager.persist(produto);
 	}
 
-	public List<Produto> listar(){
-		return manager.createQuery("select distinct(p) from Produto p",
-				Produto.class).getResultList();
+	public List<Produto> listar() {
+		return manager.createQuery("select distinct(p) from Produto p join fetch p.precos", Produto.class)
+				.getResultList();
 	}
 
 	public Produto find(Integer id) {

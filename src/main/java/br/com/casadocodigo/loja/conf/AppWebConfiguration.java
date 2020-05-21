@@ -121,24 +121,20 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	public LocaleResolver localeResolver(){
 	    return new CookieLocaleResolver();
 	}
-
+	
 	@Bean
-    public MailSender mailSender() {
-
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setUsername("alura.springmvc@gmail.com");
-        mailSender.setPassword("alura2015");
-        mailSender.setPort(587);
-
-        Properties mailProperties = new Properties();
-        mailProperties.put("mail.smtp.auth", true);
-        mailProperties.put("mail.smtp.starttls.enable", true);
-
-        mailSender.setJavaMailProperties(mailProperties);
-
-        return mailSender;
-
-    }
+	public MailSender mailSender() {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("seu servidor smtp");//por exemplo smtp.gmail.com
+		mailSender.setUsername("seu email");
+		mailSender.setPassword("sua senha");
+		mailSender.setPort(587);
+		
+		Properties mailProperties = new Properties();
+		mailProperties.setProperty("mail.smtp.auth", "true");
+		mailProperties.setProperty("mail.smtp.starttls.enable", "true");
+		mailSender.setJavaMailProperties(mailProperties);
+		
+		return mailSender;
+	}
 }
